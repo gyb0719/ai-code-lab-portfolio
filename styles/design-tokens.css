@@ -1,0 +1,60 @@
+:root {
+  /* Colors - AI 코드 연구소 네온 테마 */
+  --color-bg-primary: #0D1117;
+  --color-bg-secondary: #161B22;
+  --color-bg-tertiary: #21262D;
+  
+  --color-text-primary: #F0F6FC;
+  --color-text-secondary: #8B949E;
+  --color-text-muted: #484F58;
+  
+  /* 네온 컬러 */
+  --color-neon-cyan: #00D9FF;
+  --color-neon-purple: #BD93F9;
+  --color-neon-green: #50FA7B;
+  --color-neon-pink: #FF79C6;
+  --color-neon-yellow: #F1FA8C;
+  --color-neon-orange: #FFB86C;
+  
+  /* 그라디언트 */
+  --gradient-neon: linear-gradient(135deg, var(--color-neon-cyan), var(--color-neon-purple));
+  --gradient-dark: linear-gradient(180deg, var(--color-bg-primary), var(--color-bg-secondary));
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  
+  /* Font Sizes */
+  --font-xs: 0.75rem;
+  --font-sm: 0.875rem;
+  --font-base: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.25rem;
+  --font-2xl: 1.5rem;
+  --font-3xl: 1.875rem;
+  --font-4xl: 2.25rem;
+  --font-5xl: 3rem;
+  --font-6xl: 3.75rem;
+  
+  /* Animations */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+  
+  /* Shadows */
+  --shadow-neon-cyan: 0 0 20px rgba(0, 217, 255, 0.5);
+  --shadow-neon-purple: 0 0 20px rgba(189, 147, 249, 0.5);
+  --shadow-neon-green: 0 0 20px rgba(80, 250, 123, 0.5);
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}

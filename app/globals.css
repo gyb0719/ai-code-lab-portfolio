@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    /* AI 코드 연구소 다크 테마 */
+    --background-primary: #0D1117;
+    --background-secondary: #161B22;
+    --background-tertiary: #21262D;
+    
+    --foreground-primary: #F0F6FC;
+    --foreground-secondary: #8B949E;
+    --foreground-muted: #484F58;
+    
+    /* 네온 컬러 시스템 */
+    --neon-cyan: #00D9FF;
+    --neon-purple: #BD93F9;
+    --neon-green: #50FA7B;
+    --neon-pink: #FF79C6;
+    --neon-yellow: #F1FA8C;
+    --neon-orange: #FFB86C;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background-primary text-foreground-primary font-sans antialiased;
+    background: linear-gradient(180deg, #0D1117 0%, #161B22 100%);
+    min-height: 100vh;
+  }
+
+  /* 커스텀 스크롤바 */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neon-purple rounded-full;
+    transition: all 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neon-cyan;
+  }
+
+  /* 선택 영역 스타일 */
+  ::selection {
+    @apply bg-neon-purple/30 text-neon-cyan;
+  }
+}
+
+@layer components {
+  /* 네온 글로우 효과 */
+  .neon-glow {
+    filter: drop-shadow(0 0 10px currentColor);
+  }
+
+  .neon-glow-intense {
+    filter: drop-shadow(0 0 20px currentColor) drop-shadow(0 0 40px currentColor);
+  }
+
+  /* 네온 텍스트 */
+  .neon-text {
+    @apply text-neon-cyan;
+    text-shadow: 
+      0 0 10px rgba(0, 217, 255, 0.8),
+      0 0 20px rgba(0, 217, 255, 0.6),
+      0 0 30px rgba(0, 217, 255, 0.4);
+  }
+
+  /* 그라디언트 텍스트 */
+  .gradient-text {
+    @apply bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent;
+  }
+
+  /* 네온 보더 */
+  .neon-border {
+    @apply border border-neon-cyan/50;
+    box-shadow: 
+      inset 0 0 10px rgba(0, 217, 255, 0.1),
+      0 0 10px rgba(0, 217, 255, 0.2);
+  }
+
+  /* 터미널 스타일 */
+  .terminal {
+    @apply bg-background-secondary rounded-lg p-4 font-mono;
+    box-shadow: 
+      0 0 20px rgba(0, 217, 255, 0.1),
+      inset 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .terminal-cursor {
+    @apply inline-block w-2 h-5 bg-neon-cyan animate-pulse;
+  }
+
+  /* 버튼 스타일 */
+  .btn-neon {
+    @apply px-6 py-3 rounded-lg font-mono font-medium transition-all duration-300;
+    @apply bg-transparent border border-neon-cyan text-neon-cyan;
+    @apply hover:bg-neon-cyan hover:text-background-primary;
+    @apply hover:shadow-[0_0_30px_rgba(0,217,255,0.5)];
+    @apply active:scale-95;
+  }
+
+  .btn-gradient {
+    @apply px-6 py-3 rounded-lg font-mono font-medium transition-all duration-300;
+    @apply bg-gradient-to-r from-neon-cyan to-neon-purple text-background-primary;
+    @apply hover:shadow-[0_0_30px_rgba(189,147,249,0.5)];
+    @apply active:scale-95;
+  }
+
+  /* 카드 스타일 */
+  .card-neon {
+    @apply bg-background-secondary/50 backdrop-blur-sm rounded-lg p-6;
+    @apply border border-neon-cyan/20;
+    @apply transition-all duration-300;
+    @apply hover:border-neon-cyan/50;
+    @apply hover:shadow-[0_0_30px_rgba(0,217,255,0.2)];
+  }
+
+  /* 글리치 효과 */
+  .glitch {
+    position: relative;
+    animation: glitch 1s linear infinite;
+  }
+
+  .glitch:before,
+  .glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glitch:before {
+    animation: glitch-1 0.5s linear infinite;
+    color: #00D9FF;
+    z-index: -1;
+  }
+
+  .glitch:after {
+    animation: glitch-2 0.5s linear infinite;
+    color: #BD93F9;
+    z-index: -2;
+  }
+}
+
+@layer utilities {
+  /* 애니메이션 유틸리티 */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-matrix {
+    animation: matrix 20s linear infinite;
+  }
+
+  /* 그리드 배경 */
+  .grid-background {
+    background-image: 
+      linear-gradient(rgba(0, 217, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* 코드 블록 스타일 */
+  .code-block {
+    @apply bg-background-secondary rounded-lg p-4 font-mono text-sm;
+    @apply border border-neon-cyan/20;
+  }
+}
+
+/* 커스텀 애니메이션 */
+@keyframes glitch-1 {
+  0%, 100% { clip-path: inset(0 0 0 0); }
+  20% { clip-path: inset(20% 0 30% 0); }
+  40% { clip-path: inset(50% 0 20% 0); }
+  60% { clip-path: inset(10% 0 60% 0); }
+  80% { clip-path: inset(80% 0 5% 0); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  20% { clip-path: inset(30% 0 20% 0); transform: translate(-2px, 2px); }
+  40% { clip-path: inset(20% 0 50% 0); transform: translate(2px, -2px); }
+  60% { clip-path: inset(60% 0 10% 0); transform: translate(-2px, -2px); }
+  80% { clip-path: inset(5% 0 80% 0); transform: translate(2px, 2px); }
+}
