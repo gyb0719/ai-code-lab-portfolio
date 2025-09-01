@@ -40,10 +40,11 @@ export const metadata: Metadata = {
     siteName: 'AI 코드 연구소',
     images: [
       {
-        url: '/opengraph-image',
+        url: 'https://www.ai-code-lap.com/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'AI 코드 연구소',
+        type: 'image/png',
       },
     ],
     locale: 'ko_KR',
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AI 코드 연구소',
     description: '혁신적인 기술과 창의적인 솔루션으로 당신의 아이디어를 현실로',
-    images: ['/twitter-image'],
+    images: ['https://www.ai-code-lap.com/twitter-image'],
   },
   robots: {
     index: true,

@@ -2,5 +2,14 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
+User-agent: Kakaobot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
 # Sitemap
-Sitemap: https://ai-code-lab.vercel.app/sitemap.xml
+Sitemap: https://www.ai-code-lap.com/sitemap.xml
