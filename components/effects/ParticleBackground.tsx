@@ -49,10 +49,12 @@ export default function ParticleBackground() {
         this.y += this.speedY;
 
         // 화면 밖으로 나가면 반대편에서 나타나기
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
+        if (canvas) {
+          if (this.x > canvas.width) this.x = 0;
+          if (this.x < 0) this.x = canvas.width;
+          if (this.y > canvas.height) this.y = 0;
+          if (this.y < 0) this.y = canvas.height;
+        }
 
         // 반짝임 효과
         this.opacity += Math.random() * 0.02 - 0.01;
