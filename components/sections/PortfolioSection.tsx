@@ -3,7 +3,6 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import Image from 'next/image';
 import { 
   Globe, 
   Smartphone, 
@@ -11,9 +10,9 @@ import {
   Github, 
   ExternalLink,
   Calendar,
-  Code2,
   Sparkles
 } from 'lucide-react';
+import AILabLogo from '@/components/icons/AILabLogo';
 import { projects } from '@/data/projects';
 import { Project } from '@/lib/types';
 
@@ -41,7 +40,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="relative h-48 mb-4 rounded-lg overflow-hidden bg-background-primary">
           <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <Code2 className="w-16 h-16 text-neon-cyan/30" />
+            <AILabLogo size={64} animated={false} className="opacity-30" />
           </div>
           
           {/* 호버시 오버레이 */}
@@ -143,7 +142,7 @@ export default function PortfolioSection() {
   const filteredProjects = projects.filter(p => p.category === activeTab);
 
   return (
-    <section id="portfolio" className="py-20 relative overflow-hidden">
+    <section id="portfolio" className="py-16 relative overflow-hidden">
       {/* 배경 효과 */}
       <div className="absolute inset-0 grid-background opacity-10" />
       
@@ -156,17 +155,6 @@ export default function PortfolioSection() {
         >
           {/* 섹션 타이틀 */}
           <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.1 }}
-              className="inline-block terminal px-4 py-2 rounded-lg mb-4"
-            >
-              <span className="text-neon-green text-sm font-mono">
-                <span className="opacity-60">$</span> ls projects/
-              </span>
-            </motion.div>
-            
             <h2 className="text-4xl md:text-5xl font-bold font-mono mb-4">
               <span className="gradient-text">Portfolio</span>
             </h2>
@@ -180,18 +168,18 @@ export default function PortfolioSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 }}
-            className="flex justify-center mb-12"
+            className="flex justify-center mb-8 sm:mb-12 px-4 sm:px-0"
           >
-            <div className="inline-flex bg-background-secondary/50 backdrop-blur-sm rounded-lg p-1 border border-neon-cyan/20">
+            <div className="inline-flex bg-background-secondary/50 backdrop-blur-sm rounded-lg p-1 border border-neon-cyan/20 w-full sm:w-auto overflow-x-auto">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 return (
                   <motion.button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id as any)}
+                    onClick={() => setActiveTab(tab.id as 'web' | 'mobile' | 'desktop')}
                     className={`
-                      px-6 py-3 rounded-lg font-mono text-sm transition-all duration-300
-                      flex items-center gap-2
+                      px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-mono text-xs sm:text-sm transition-all duration-300
+                      flex items-center gap-1.5 sm:gap-2 whitespace-nowrap min-h-[44px]
                       ${activeTab === tab.id 
                         ? 'bg-gradient-neon text-background-primary' 
                         : 'text-foreground-secondary hover:text-neon-cyan'
@@ -216,7 +204,7 @@ export default function PortfolioSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: activeTab === 'web' ? 50 : activeTab === 'mobile' ? 0 : -50 }}
               transition={{ duration: 0.3 }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-4 sm:px-0"
             >
               {filteredProjects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />

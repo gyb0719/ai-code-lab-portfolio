@@ -6,6 +6,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 export default function CustomCursor() {
   const [isPointer, setIsPointer] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -15,6 +16,9 @@ export default function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    // 모바일 체크
+    setIsMobile('ontouchstart' in window);
+    
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16);
       cursorY.set(e.clientY - 16);
@@ -47,8 +51,8 @@ export default function CustomCursor() {
       setIsHidden(false);
     };
 
-    // 모바일 체크
-    if ('ontouchstart' in window) {
+    // 모바일에서는 이벤트 리스너 추가하지 않음
+    if (isMobile) {
       return;
     }
 
@@ -69,10 +73,10 @@ export default function CustomCursor() {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, isMobile]);
 
   // 모바일에서는 렌더링하지 않음
-  if ('ontouchstart' in window) {
+  if (isMobile) {
     return null;
   }
 

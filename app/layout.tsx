@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
@@ -9,6 +9,13 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter"
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#00D9FF',
+};
 
 export const metadata: Metadata = {
   title: "AI 코드 연구소 | 권용범 포트폴리오",
@@ -60,12 +67,6 @@ export const metadata: Metadata = {
     },
   },
   manifest: '/manifest.json',
-  themeColor: '#00D9FF',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
 };
 
 export default function RootLayout({

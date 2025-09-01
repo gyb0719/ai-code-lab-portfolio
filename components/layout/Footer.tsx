@@ -1,29 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { 
   Github, 
-  Linkedin, 
-  Mail, 
-  Phone, 
-  MapPin,
-  Code2,
   Heart,
-  Terminal,
   ArrowUp
 } from 'lucide-react';
+import AILabLogo from '@/components/icons/AILabLogo';
+import KakaoIcon from '@/components/icons/KakaoIcon';
+import InstagramIcon from '@/components/icons/InstagramIcon';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub' },
-  { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-];
-
-const footerLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Services', href: '#services' },
-  { label: 'Blog', href: '#blog' },
+  { icon: Github, href: 'https://github.com', label: 'GitHub', color: 'neon-cyan' },
+  { icon: InstagramIcon, href: 'https://www.instagram.com/y_bum2/', label: 'Instagram', color: 'gradient' },
+  { icon: KakaoIcon, href: 'https://open.kakao.com/o/slJ2PIPh', label: 'KakaoTalk', color: 'yellow' }
 ];
 
 export default function Footer() {
@@ -36,101 +26,106 @@ export default function Footer() {
       {/* 배경 효과 */}
       <div className="absolute inset-0 grid-background opacity-10" />
       
-      <div className="container mx-auto px-4 py-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div className="container mx-auto px-4 py-8 relative z-10">
+        <div className="mb-8">
           {/* 브랜드 섹션 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="col-span-1 md:col-span-2"
+            className="text-center"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <Code2 className="w-8 h-8 text-neon-cyan" />
-              <h3 className="text-xl font-mono font-bold gradient-text">
+            <div className="flex items-center gap-3 mb-6 justify-center">
+              <div className="p-2 bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 rounded-lg">
+                <AILabLogo size={32} animated={false} />
+              </div>
+              <h3 className="text-2xl font-bold gradient-text">
                 AI 코드 연구소
               </h3>
             </div>
-            <p className="text-foreground-secondary mb-4 max-w-md">
+            <p className="text-foreground-secondary mb-4 max-w-md mx-auto">
               혁신적인 기술과 창의적인 솔루션으로 당신의 아이디어를 현실로 만들어드립니다.
             </p>
-            <div className="flex gap-4">
+            
+            <div className="flex gap-4 justify-center">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
+                const isKakao = social.label === 'KakaoTalk';
+                const isInstagram = social.label === 'Instagram';
+                
+                const getBorderStyle = () => {
+                  if (isKakao) return 'border-yellow-400/30 hover:border-yellow-400 hover:bg-yellow-400/10 hover:shadow-[0_0_20px_rgba(250,204,21,0.4)]';
+                  if (isInstagram) return 'border-pink-400/30 hover:border-pink-400 hover:bg-gradient-to-br hover:from-purple-500/10 hover:to-pink-500/10 hover:shadow-[0_0_20px_rgba(236,72,153,0.4)]';
+                  return 'border-neon-cyan/30 hover:border-neon-cyan hover:bg-neon-cyan/10 hover:shadow-[0_0_20px_rgba(0,217,255,0.3)]';
+                };
+                
+                const getIconStyle = () => {
+                  if (isKakao) return 'text-yellow-400 group-hover:text-yellow-300';
+                  if (isInstagram) return 'text-pink-400 group-hover:text-pink-300';
+                  return 'text-neon-cyan group-hover:text-neon-purple';
+                };
+                
+                const getTooltipStyle = () => {
+                  if (isKakao) return 'bg-yellow-400/90 text-black';
+                  if (isInstagram) return 'bg-gradient-to-r from-purple-500 to-pink-500 text-white';
+                  return 'bg-neon-cyan/90 text-background-primary';
+                };
+                
+                const getTooltipText = () => {
+                  if (isKakao) return '오픈채팅 참여';
+                  if (isInstagram) return '인스타그램 방문';
+                  return 'GitHub 보기';
+                };
+                
                 return (
                   <motion.a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg border border-neon-cyan/30 hover:border-neon-cyan hover:bg-neon-cyan/10 transition-all group"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className={`
+                      p-3 rounded-xl border-2 transition-all group relative overflow-hidden
+                      ${getBorderStyle()}
+                    `}
+                    whileHover={{ scale: 1.1, rotate: isInstagram ? -5 : 5 }}
                     whileTap={{ scale: 0.9 }}
+                    title={social.label}
                   >
-                    <Icon className="w-5 h-5 text-neon-cyan group-hover:text-neon-purple transition-colors" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    {isInstagram && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/20 to-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        animate={{
+                          background: [
+                            'linear-gradient(135deg, rgba(167,139,250,0.2) 0%, rgba(236,72,153,0.2) 50%, rgba(251,146,60,0.2) 100%)',
+                            'linear-gradient(135deg, rgba(236,72,153,0.2) 0%, rgba(251,146,60,0.2) 50%, rgba(167,139,250,0.2) 100%)',
+                            'linear-gradient(135deg, rgba(251,146,60,0.2) 0%, rgba(167,139,250,0.2) 50%, rgba(236,72,153,0.2) 100%)',
+                          ]
+                        }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                      />
+                    )}
+                    <Icon className={`
+                      w-6 h-6 transition-all relative z-10
+                      ${getIconStyle()}
+                      ${isInstagram ? 'group-hover:scale-110' : ''}
+                    `} />
+                    {/* 툴팁 */}
+                    <div className={`
+                      absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg text-xs font-mono whitespace-nowrap
+                      opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none
+                      ${getTooltipStyle()}
+                    `}>
+                      {getTooltipText()}
+                    </div>
                   </motion.a>
                 );
               })}
-            </div>
-          </motion.div>
-
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            <h4 className="font-mono font-semibold text-neon-cyan mb-4 flex items-center gap-2">
-              <Terminal className="w-4 h-4" />
-              Quick Links
-            </h4>
-            <ul className="space-y-2">
-              {footerLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-foreground-secondary hover:text-neon-cyan transition-colors text-sm font-mono"
-                  >
-                    {'>'} {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <h4 className="font-mono font-semibold text-neon-cyan mb-4 flex items-center gap-2">
-              <Terminal className="w-4 h-4" />
-              Contact
-            </h4>
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-foreground-secondary text-sm">
-                <Mail className="w-4 h-4 text-neon-purple" />
-                <a 
-                  href="mailto:gyb07190@gmail.com" 
-                  className="hover:text-neon-cyan transition-colors font-mono"
-                >
-                  gyb07190@gmail.com
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-foreground-secondary text-sm">
-                <Phone className="w-4 h-4 text-neon-purple" />
-                <a 
-                  href="tel:+821038255659" 
-                  className="hover:text-neon-cyan transition-colors font-mono"
-                >
-                  010-3825-5659
-                </a>
-              </div>
-              <div className="flex items-center gap-2 text-foreground-secondary text-sm">
-                <MapPin className="w-4 h-4 text-neon-purple" />
-                <span className="font-mono">Seoul, Korea</span>
-              </div>
             </div>
           </motion.div>
         </div>
@@ -142,11 +137,15 @@ export default function Footer() {
           transition={{ delay: 0.4 }}
           className="pt-8 border-t border-neon-cyan/10 flex flex-col md:flex-row items-center justify-between gap-4"
         >
-          <div className="flex items-center gap-2 text-foreground-secondary text-sm font-mono">
-            <span>© 2024 권용범. All rights reserved.</span>
-            <span className="text-neon-cyan">|</span>
-            <span className="flex items-center gap-1">
-              Made with <Heart className="w-4 h-4 text-neon-pink animate-pulse" /> by AI 코드 연구소
+          <div className="flex flex-col md:flex-row items-center gap-3 text-sm">
+            <span className="font-medium text-foreground-primary">
+              © 2025 <span className="font-bold text-neon-cyan">권용범</span>. All rights reserved.
+            </span>
+            <span className="hidden md:block text-neon-cyan/50">•</span>
+            <span className="flex items-center gap-2 text-foreground-secondary">
+              Made with 
+              <Heart className="w-4 h-4 text-neon-pink animate-pulse" /> 
+              by <span className="font-bold text-neon-purple">AI 코드 연구소</span>
             </span>
           </div>
 
@@ -161,18 +160,6 @@ export default function Footer() {
           </motion.button>
         </motion.div>
 
-        {/* 터미널 스타일 애니메이션 텍스트 */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-8 text-center"
-        >
-          <div className="inline-block terminal px-4 py-2 rounded text-xs font-mono text-neon-green">
-            <span className="opacity-60">$</span> echo "Ready to build something amazing?"
-            <span className="terminal-cursor ml-2" />
-          </div>
-        </motion.div>
       </div>
     </footer>
   );

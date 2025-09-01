@@ -22,7 +22,7 @@ const floatingIcons = [
 ];
 
 export default function HeroSection() {
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  // const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -58,31 +58,33 @@ export default function HeroSection() {
         <ThreeDCube />
       </div>
 
-      {/* 플로팅 아이콘들 */}
-      {floatingIcons.map(({ Icon, delay }, index) => (
-        <motion.div
-          key={index}
-          className="absolute text-neon-purple/30"
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: [0.3, 0.6, 0.3],
-            x: [0, 30, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 6,
-            delay,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            left: `${20 + index * 20}%`,
-            top: `${20 + index * 15}%`,
-          }}
-        >
-          <Icon size={40} />
-        </motion.div>
-      ))}
+      {/* 플로팅 아이콘들 - 모바일에서는 숨김 */}
+      <div className="hidden lg:block">
+        {floatingIcons.map(({ Icon, delay }, index) => (
+          <motion.div
+            key={index}
+            className="absolute text-neon-purple/30"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: [0.3, 0.6, 0.3],
+              x: [0, 30, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 6,
+              delay,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              left: `${20 + index * 20}%`,
+              top: `${20 + index * 15}%`,
+            }}
+          >
+            <Icon size={40} />
+          </motion.div>
+        ))}
+      </div>
 
       {/* 메인 콘텐츠 */}
       <div className="container mx-auto px-4 relative z-10">
@@ -92,28 +94,14 @@ export default function HeroSection() {
           transition={{ duration: 1 }}
           className="text-center max-w-4xl mx-auto"
         >
-          {/* 터미널 스타일 인트로 */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="inline-block terminal px-4 py-2 rounded-lg mb-8"
-          >
-            <span className="text-neon-green text-sm font-mono">
-              <span className="opacity-60">$</span> whoami
-            </span>
-            <span className="terminal-cursor ml-2" />
-          </motion.div>
-
           {/* 메인 타이틀 */}
           <motion.h1
-            className="text-5xl md:text-7xl lg:text-8xl font-bold font-mono mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold font-mono mb-4 sm:mb-6 px-4 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <span className="block text-foreground-primary mb-2">안녕하세요,</span>
-            <span className="gradient-text glitch" data-text="AI 코드 연구소">
+            <span className="gradient-text">
               AI 코드 연구소
             </span>
           </motion.h1>
@@ -123,7 +111,7 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-xl md:text-2xl lg:text-3xl text-foreground-secondary font-mono mb-8"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-foreground-secondary font-mono mb-6 sm:mb-8 px-4 sm:px-0"
           >
             <span>당신의 아이디어를 </span>
             <span className="text-neon-cyan">
@@ -145,10 +133,10 @@ export default function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
-            className="text-lg text-foreground-secondary max-w-2xl mx-auto mb-10"
+            className="text-base sm:text-lg text-foreground-secondary max-w-2xl mx-auto mb-8 sm:mb-10 px-6 sm:px-4"
           >
-            10년 이상의 경험을 보유한 풀스택 개발자 권용범입니다.
-            최신 기술과 창의적인 솔루션으로 비즈니스 성장을 도와드립니다.
+            다양한 개발 경험을 보유한 풀스택 개발자 권용범입니다.<br className="hidden sm:block" />
+            <span className="block sm:inline">최신 기술과 창의적인 솔루션으로 비즈니스 성장을 도와드립니다.</span>
           </motion.p>
 
           {/* CTA 버튼들 */}
@@ -156,11 +144,11 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center px-6 sm:px-0"
           >
             <motion.button
               onClick={scrollToContact}
-              className="btn-gradient group relative overflow-hidden"
+              className="btn-gradient group relative overflow-hidden w-full sm:w-auto min-h-[48px] touch-manipulation"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -175,7 +163,7 @@ export default function HeroSection() {
 
             <motion.button
               onClick={scrollToPortfolio}
-              className="btn-neon group"
+              className="btn-neon group w-full sm:w-auto min-h-[48px] touch-manipulation"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

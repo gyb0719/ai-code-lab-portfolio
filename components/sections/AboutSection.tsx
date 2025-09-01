@@ -22,8 +22,8 @@ const skills = {
 };
 
 const stats = [
-  { label: '경력', value: '10+', unit: '년' },
-  { label: '완료 프로젝트', value: '100+', unit: '개' },
+  { label: '경력', value: '5+', unit: '년' },
+  { label: '완료 프로젝트', value: '200+', unit: '개' },
   { label: '고객 만족도', value: '98', unit: '%' },
   { label: '코드 라인', value: '1M+', unit: '' },
 ];
@@ -33,7 +33,7 @@ export default function AboutSection() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section id="about" className="py-20 bg-background-secondary relative overflow-hidden">
+    <section id="about" className="py-16 bg-background-secondary relative overflow-hidden">
       {/* 배경 효과 */}
       <div className="absolute inset-0 grid-background opacity-10" />
       
@@ -46,17 +46,6 @@ export default function AboutSection() {
         >
           {/* 섹션 타이틀 */}
           <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.1 }}
-              className="inline-block terminal px-4 py-2 rounded-lg mb-4"
-            >
-              <span className="text-neon-green text-sm font-mono">
-                <span className="opacity-60">$</span> cat about.md
-              </span>
-            </motion.div>
-            
             <h2 className="text-4xl md:text-5xl font-bold font-mono mb-4">
               <span className="gradient-text">About Me</span>
             </h2>
@@ -74,11 +63,11 @@ export default function AboutSection() {
               transition={{ delay: 0.2 }}
             >
               <h3 className="text-2xl font-bold mb-6 text-neon-cyan font-mono">
-                안녕하세요, 권용범입니다 👋
+                안녕하세요, AI 코드 연구소입니다
               </h3>
               <div className="space-y-4 text-foreground-secondary">
                 <p>
-                  10년 이상의 경험을 보유한 풀스택 개발자로, 웹, 모바일, 데스크톱 
+                  다양한 개발 경험을 보유한 풀스택 개발자로, 웹, 모바일, 데스크톱 
                   애플리케이션 개발을 전문으로 합니다. 최신 기술 트렌드를 지속적으로 
                   학습하며, 클라이언트의 비즈니스 목표에 맞는 최적의 솔루션을 제공합니다.
                 </p>

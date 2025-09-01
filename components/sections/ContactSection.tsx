@@ -4,6 +4,7 @@ import { useState, useRef, FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import emailjs from '@emailjs/browser';
+import { emailConfig, isEmailJSConfigured } from '@/lib/emailjs';
 import { 
   Mail, 
   Phone, 
@@ -94,17 +95,24 @@ export default function ContactSection() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // EmailJS 설정 (실제 사용시 환경변수로 관리)
-    const SERVICE_ID = 'service_id';
-    const TEMPLATE_ID = 'template_id';
-    const PUBLIC_KEY = 'public_key';
-
     try {
-      // 실제로는 EmailJS를 통해 전송
-      // await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current!, PUBLIC_KEY);
-      
-      // 데모를 위한 임시 딜레이
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // EmailJS 설정 확인
+      if (isEmailJSConfigured()) {
+        // 실제 이메일 전송
+        await emailjs.sendForm(
+          emailConfig.serviceId,
+          emailConfig.templateId,
+          formRef.current!,
+          emailConfig.publicKey
+        );
+      } else {
+        // 개발 모드: 콘솔에 경고 표시하고 데모 동작
+        console.warn('EmailJS가 설정되지 않았습니다. .env.local 파일을 확인하세요.');
+        console.log('폼 데이터:', formData);
+        
+        // 데모를 위한 임시 딜레이
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
       
       setSubmitStatus('success');
       setFormData(initialFormData);
@@ -136,7 +144,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-background-secondary relative overflow-hidden">
+    <section id="contact" className="py-16 bg-background-secondary relative overflow-hidden">
       {/* 배경 효과 */}
       <div className="absolute inset-0 grid-background opacity-10" />
       
@@ -149,17 +157,6 @@ export default function ContactSection() {
         >
           {/* 섹션 타이틀 */}
           <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.1 }}
-              className="inline-block terminal px-4 py-2 rounded-lg mb-4"
-            >
-              <span className="text-neon-green text-sm font-mono">
-                <span className="opacity-60">$</span> contact --request
-              </span>
-            </motion.div>
-            
             <h2 className="text-4xl md:text-5xl font-bold font-mono mb-4">
               <span className="gradient-text">Contact Me</span>
             </h2>
@@ -277,7 +274,7 @@ export default function ContactSection() {
                       }
                       focus:outline-none focus:ring-2 focus:ring-neon-cyan/20
                     `}
-                    placeholder="권용범"
+                    placeholder="홍길동"
                   />
                   {errors.name && (
                     <p className="mt-1 text-xs text-red-500 font-mono">{errors.name}</p>
@@ -304,7 +301,7 @@ export default function ContactSection() {
                       }
                       focus:outline-none focus:ring-2 focus:ring-neon-cyan/20
                     `}
-                    placeholder="your@email.com"
+                    placeholder="example@naver.com"
                   />
                   {errors.email && (
                     <p className="mt-1 text-xs text-red-500 font-mono">{errors.email}</p>

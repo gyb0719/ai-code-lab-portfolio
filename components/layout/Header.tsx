@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Code2, Terminal } from 'lucide-react';
+import { Menu, X, Terminal, Home } from 'lucide-react';
 import { cn } from '@/lib/utils/cn';
+import AILabLogo from '@/components/icons/AILabLogo';
 
 const navItems = [
+  { label: 'Home', href: '#home', icon: Home },
   { label: 'About', href: '#about' },
   { label: 'Portfolio', href: '#portfolio' },
   { label: 'Contact', href: '#contact' },
@@ -25,6 +27,30 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (href: string) => {
+    if (href === '#home') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      const targetId = href.replace('#', '');
+      const element = document.getElementById(targetId);
+      if (element) {
+        const offset = 100; // 헤더 높이 + 여유 공간
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+    // 모바일 메뉴 닫기
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -41,12 +67,12 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
             <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
               className="relative"
             >
-              <Code2 className="w-8 h-8 text-neon-cyan" />
-              <div className="absolute inset-0 w-8 h-8 bg-neon-cyan/20 blur-xl group-hover:bg-neon-cyan/40 transition-all" />
+              <AILabLogo size={40} animated={true} />
+              <div className="absolute inset-0 w-10 h-10 bg-neon-cyan/20 blur-xl group-hover:bg-neon-cyan/40 transition-all" />
             </motion.div>
             <div className="flex flex-col">
               <span className="text-lg font-mono font-bold gradient-text">
@@ -60,37 +86,29 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Link
-                  href={item.href}
-                  className="relative font-mono text-sm text-foreground-primary hover:text-neon-cyan transition-colors group"
+            {navItems.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
                 >
-                  <span className="relative z-10">{item.label}</span>
-                  <motion.span
-                    className="absolute left-0 bottom-0 w-0 h-[2px] bg-neon-cyan group-hover:w-full transition-all duration-300"
-                    whileHover={{ boxShadow: '0 0 10px rgba(0, 217, 255, 0.8)' }}
-                  />
-                  <Terminal className="inline-block w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </Link>
-              </motion.div>
-            ))}
-
-            <motion.button
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-              className="btn-neon"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Start Project
-            </motion.button>
+                  <button
+                    onClick={() => scrollToSection(item.href)}
+                    className="relative font-mono text-sm text-foreground-primary hover:text-neon-cyan transition-colors group flex items-center gap-2"
+                  >
+                    {Icon && <Icon className="w-4 h-4" />}
+                    <span className="relative z-10">{item.label}</span>
+                    <motion.span
+                      className="absolute left-0 bottom-0 w-0 h-[2px] bg-neon-cyan group-hover:w-full transition-all duration-300"
+                      whileHover={{ boxShadow: '0 0 10px rgba(0, 217, 255, 0.8)' }}
+                    />
+                  </button>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -138,31 +156,25 @@ export default function Header() {
           >
             <div className="container mx-auto px-4 py-6">
               <div className="flex flex-col gap-4">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center gap-2 font-mono text-foreground-primary hover:text-neon-cyan transition-colors"
+                {navItems.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={item.label}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: index * 0.1 }}
                     >
-                      <Terminal className="w-4 h-4" />
-                      <span>{item.label}</span>
-                    </Link>
-                  </motion.div>
-                ))}
-                <motion.button
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="btn-gradient mt-4"
-                >
-                  Start Project
-                </motion.button>
+                      <button
+                        onClick={() => scrollToSection(item.href)}
+                        className="flex items-center gap-2 font-mono text-foreground-primary hover:text-neon-cyan transition-colors w-full text-left"
+                      >
+                        {Icon ? <Icon className="w-4 h-4" /> : <Terminal className="w-4 h-4" />}
+                        <span>{item.label}</span>
+                      </button>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
