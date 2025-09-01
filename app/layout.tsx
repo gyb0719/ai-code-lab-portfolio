@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CustomCursor from "@/components/effects/CustomCursor";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -12,13 +13,58 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "AI 코드 연구소 | 권용범 포트폴리오",
   description: "Web, Mobile, Desktop 개발 전문 프리랜서 개발자 권용범의 포트폴리오",
-  keywords: ["웹개발", "모바일앱개발", "프리랜서", "React", "Next.js", "Flutter"],
+  keywords: ["웹개발", "모바일앱개발", "프리랜서", "React", "Next.js", "Flutter", "TypeScript", "Node.js", "Python"],
   authors: [{ name: "권용범", url: "https://github.com" }],
+  creator: "권용범",
+  publisher: "AI 코드 연구소",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://ai-code-lab.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: "AI 코드 연구소 | 권용범 포트폴리오",
     description: "혁신적인 기술과 창의적인 솔루션으로 당신의 아이디어를 현실로",
-    type: "website",
-    locale: "ko_KR",
+    url: 'https://ai-code-lab.vercel.app',
+    siteName: 'AI 코드 연구소',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'AI 코드 연구소 - 권용범 포트폴리오',
+      },
+    ],
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI 코드 연구소 | 권용범 포트폴리오',
+    description: '혁신적인 기술과 창의적인 솔루션으로 당신의 아이디어를 현실로',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  manifest: '/manifest.json',
+  themeColor: '#00D9FF',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
   },
 };
 
@@ -30,6 +76,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="scroll-smooth">
       <body className={`${inter.variable} font-sans antialiased bg-background-primary text-foreground-primary`}>
+        <CustomCursor />
         <Header />
         <main className="min-h-screen pt-20">
           {children}
