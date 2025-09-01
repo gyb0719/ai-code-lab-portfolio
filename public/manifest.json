@@ -1,7 +1,7 @@
 {
-  "name": "AI 코드 연구소 - 권용범 포트폴리오",
+  "name": "AI 코드 연구소",
   "short_name": "AI 코드 연구소",
-  "description": "Web, Mobile, Desktop 개발 전문 프리랜서 개발자 권용범의 포트폴리오",
+  "description": "Web, Mobile, Desktop 개발 전문 - 혁신적인 기술과 창의적인 솔루션으로 비즈니스 성장을 도와드립니다",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0D1117",
