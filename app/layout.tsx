@@ -29,18 +29,18 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://ai-code-lab.vercel.app'),
+  metadataBase: new URL('https://www.ai-code-lap.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "AI 코드 연구소",
     description: "혁신적인 기술과 창의적인 솔루션으로 당신의 아이디어를 현실로",
-    url: 'https://ai-code-lab.vercel.app',
+    url: 'https://www.ai-code-lap.com',
     siteName: 'AI 코드 연구소',
     images: [
       {
-        url: '/og-image.png',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'AI 코드 연구소',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'AI 코드 연구소',
     description: '혁신적인 기술과 창의적인 솔루션으로 당신의 아이디어를 현실로',
-    images: ['/og-image.png'],
+    images: ['/twitter-image'],
   },
   robots: {
     index: true,
