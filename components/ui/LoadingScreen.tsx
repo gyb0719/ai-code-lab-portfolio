@@ -1,14 +1,31 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+
+interface Particle {
+  x: number;
+  y: number;
+  duration: number;
+  delay: number;
+}
 
 export default function LoadingScreen() {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [particles, setParticles] = useState<Particle[]>([]);
 
   useEffect(() => {
+    // 클라이언트에서만 파티클 생성
+    const newParticles = [...Array(20)].map(() => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      duration: 2 + Math.random() * 2,
+      delay: Math.random() * 2,
+    }));
+    setParticles(newParticles);
+
     // 프로그레스 애니메이션
     const progressInterval = setInterval(() => {
       setProgress(prev => {
@@ -48,13 +65,13 @@ export default function LoadingScreen() {
 
           {/* 파티클 효과 */}
           <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
+            {particles.map((particle, i) => (
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 bg-neon-cyan rounded-full"
                 initial={{
-                  x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-                  y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
+                  x: particle.x,
+                  y: particle.y,
                   opacity: 0,
                 }}
                 animate={{
@@ -62,9 +79,9 @@ export default function LoadingScreen() {
                   opacity: [0, 1, 0],
                 }}
                 transition={{
-                  duration: 2 + Math.random() * 2,
+                  duration: particle.duration,
                   repeat: Infinity,
-                  delay: Math.random() * 2,
+                  delay: particle.delay,
                 }}
               />
             ))}
