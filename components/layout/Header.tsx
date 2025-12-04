@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Terminal, Home } from 'lucide-react';
 import { cn } from '@/lib/utils/cn';
+import ThemeToggle from '@/components/ui/ThemeToggle';
 
 const navItems = [
   { label: 'Home', href: '#home', icon: Home },
@@ -105,14 +106,25 @@ export default function Header() {
                 </motion.div>
               );
             })}
+
+            {/* Theme Toggle */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: navItems.length * 0.1 }}
+            >
+              <ThemeToggle />
+            </motion.div>
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden relative z-50 p-2"
-          >
+          {/* Mobile Controls */}
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <motion.button
+              whileTap={{ scale: 0.9 }}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="relative z-50 p-2"
+            >
             <AnimatePresence mode="wait">
               {isMobileMenuOpen ? (
                 <motion.div
@@ -136,7 +148,8 @@ export default function Header() {
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.button>
+            </motion.button>
+          </div>
         </nav>
       </div>
 

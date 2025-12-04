@@ -10,7 +10,25 @@ import {
   Github,
   ExternalLink,
   Wallet,
-  Sparkles
+  Sparkles,
+  ShoppingCart,
+  Building2,
+  LayoutDashboard,
+  Bot,
+  CalendarCheck,
+  Rocket,
+  MapPin,
+  Users,
+  ShoppingBag,
+  Heart,
+  GraduationCap,
+  Calculator,
+  Cog,
+  Database,
+  Package,
+  FileType,
+  Activity,
+  MonitorSmartphone
 } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { Project } from '@/lib/types';
@@ -21,8 +39,32 @@ const tabs = [
   { id: 'desktop', label: 'Desktop', icon: Monitor },
 ];
 
+// 프로젝트 아이디별 아이콘과 그라디언트 매핑
+const projectVisuals: Record<string, { icon: React.ElementType; gradient: string; bgGradient: string }> = {
+  'web-1': { icon: ShoppingCart, gradient: 'from-cyan-400 to-blue-500', bgGradient: 'from-cyan-500/20 to-blue-500/20' },
+  'web-2': { icon: Building2, gradient: 'from-purple-400 to-pink-500', bgGradient: 'from-purple-500/20 to-pink-500/20' },
+  'web-3': { icon: LayoutDashboard, gradient: 'from-green-400 to-cyan-500', bgGradient: 'from-green-500/20 to-cyan-500/20' },
+  'web-4': { icon: Bot, gradient: 'from-orange-400 to-red-500', bgGradient: 'from-orange-500/20 to-red-500/20' },
+  'web-5': { icon: CalendarCheck, gradient: 'from-blue-400 to-purple-500', bgGradient: 'from-blue-500/20 to-purple-500/20' },
+  'web-6': { icon: Rocket, gradient: 'from-pink-400 to-purple-500', bgGradient: 'from-pink-500/20 to-purple-500/20' },
+  'mobile-1': { icon: MapPin, gradient: 'from-yellow-400 to-orange-500', bgGradient: 'from-yellow-500/20 to-orange-500/20' },
+  'mobile-2': { icon: Users, gradient: 'from-blue-400 to-cyan-500', bgGradient: 'from-blue-500/20 to-cyan-500/20' },
+  'mobile-3': { icon: ShoppingBag, gradient: 'from-purple-400 to-blue-500', bgGradient: 'from-purple-500/20 to-blue-500/20' },
+  'mobile-4': { icon: Heart, gradient: 'from-red-400 to-pink-500', bgGradient: 'from-red-500/20 to-pink-500/20' },
+  'mobile-5': { icon: GraduationCap, gradient: 'from-indigo-400 to-purple-500', bgGradient: 'from-indigo-500/20 to-purple-500/20' },
+  'mobile-6': { icon: Calculator, gradient: 'from-cyan-400 to-teal-500', bgGradient: 'from-cyan-500/20 to-teal-500/20' },
+  'desktop-1': { icon: Cog, gradient: 'from-amber-400 to-orange-500', bgGradient: 'from-amber-500/20 to-orange-500/20' },
+  'desktop-2': { icon: Database, gradient: 'from-emerald-400 to-cyan-500', bgGradient: 'from-emerald-500/20 to-cyan-500/20' },
+  'desktop-3': { icon: Package, gradient: 'from-violet-400 to-purple-500', bgGradient: 'from-violet-500/20 to-purple-500/20' },
+  'desktop-4': { icon: FileType, gradient: 'from-rose-400 to-pink-500', bgGradient: 'from-rose-500/20 to-pink-500/20' },
+  'desktop-5': { icon: Activity, gradient: 'from-lime-400 to-green-500', bgGradient: 'from-lime-500/20 to-green-500/20' },
+  'desktop-6': { icon: MonitorSmartphone, gradient: 'from-sky-400 to-indigo-500', bgGradient: 'from-sky-500/20 to-indigo-500/20' },
+};
+
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
+  const visual = projectVisuals[project.id] || { icon: Globe, gradient: 'from-neon-cyan to-neon-purple', bgGradient: 'from-neon-cyan/20 to-neon-purple/20' };
+  const Icon = visual.icon;
 
   return (
     <motion.div
@@ -37,12 +79,37 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <div className="card-neon h-full flex flex-col">
         {/* 이미지 영역 */}
         <div className="relative h-48 mb-4 rounded-lg overflow-hidden bg-background-primary">
-          <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-4xl font-bold text-neon-cyan/30 font-mono">
-              {project.title.slice(0, 2)}
-            </div>
+          <div className={`absolute inset-0 bg-gradient-to-br ${visual.bgGradient}`} />
+
+          {/* 그리드 패턴 배경 */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+              backgroundSize: '20px 20px'
+            }} />
           </div>
+
+          {/* 메인 아이콘 */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0.5 }}
+              animate={isHovered ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0.5 }}
+              transition={{ duration: 0.3 }}
+              className={`p-6 rounded-2xl bg-gradient-to-br ${visual.gradient} shadow-lg`}
+            >
+              <Icon className="w-12 h-12 text-white" strokeWidth={1.5} />
+            </motion.div>
+          </div>
+
+          {/* 장식용 원형 요소들 */}
+          <motion.div
+            className={`absolute top-4 right-4 w-16 h-16 rounded-full bg-gradient-to-br ${visual.gradient} opacity-20 blur-xl`}
+            animate={isHovered ? { scale: 1.5, opacity: 0.3 } : { scale: 1, opacity: 0.2 }}
+          />
+          <motion.div
+            className={`absolute bottom-4 left-4 w-12 h-12 rounded-full bg-gradient-to-br ${visual.gradient} opacity-20 blur-lg`}
+            animate={isHovered ? { scale: 1.3, opacity: 0.25 } : { scale: 1, opacity: 0.15 }}
+          />
           
           {/* 호버시 오버레이 */}
           <AnimatePresence>
@@ -136,11 +203,13 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function PortfolioSection() {
-  const [activeTab, setActiveTab] = useState<'web' | 'mobile' | 'desktop'>('web');
+  const [activeTab, setActiveTab] = useState<'web' | 'mobile' | 'desktop' | 'all'>('web');
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const filteredProjects = projects.filter(p => p.category === activeTab);
+  const filteredProjects = activeTab === 'all'
+    ? projects
+    : projects.filter(p => p.category === activeTab);
 
   return (
     <section id="portfolio" className="py-16 relative overflow-hidden">
@@ -214,21 +283,24 @@ export default function PortfolioSection() {
           </AnimatePresence>
 
           {/* 더보기 버튼 */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-12"
-          >
-            <motion.button
-              className="btn-neon group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          {activeTab !== 'all' && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.5 }}
+              className="text-center mt-12"
             >
-              <span>모든 프로젝트 보기</span>
-              <ExternalLink className="inline-block ml-2 w-4 h-4 group-hover:rotate-45 transition-transform" />
-            </motion.button>
-          </motion.div>
+              <motion.button
+                className="btn-neon group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setActiveTab('all')}
+              >
+                <span>모든 프로젝트 보기</span>
+                <ExternalLink className="inline-block ml-2 w-4 h-4 group-hover:rotate-45 transition-transform" />
+              </motion.button>
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>

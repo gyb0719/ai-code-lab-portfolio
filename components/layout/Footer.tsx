@@ -11,7 +11,7 @@ import KakaoIcon from '@/components/icons/KakaoIcon';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 
 const socialLinks = [
-  { icon: Github, href: 'https://github.com', label: 'GitHub', color: 'neon-cyan' },
+  { icon: Github, href: 'https://github.com/gyb0719', label: 'GitHub', color: 'neon-cyan' },
   { icon: InstagramIcon, href: 'https://www.instagram.com/y_bum2/', label: 'Instagram', color: 'gradient' },
   { icon: KakaoIcon, href: 'https://open.kakao.com/o/slJ2PIPh', label: 'KakaoTalk', color: 'yellow' }
 ];

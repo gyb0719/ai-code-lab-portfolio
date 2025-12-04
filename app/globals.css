@@ -6,15 +6,15 @@
 
 @layer base {
   :root {
-    /* AI 코드 연구소 다크 테마 */
+    /* AI 코드 연구소 다크 테마 (기본) */
     --background-primary: #0D1117;
     --background-secondary: #161B22;
     --background-tertiary: #21262D;
-    
+
     --foreground-primary: #F0F6FC;
     --foreground-secondary: #8B949E;
     --foreground-muted: #484F58;
-    
+
     /* 네온 컬러 시스템 */
     --neon-cyan: #00D9FF;
     --neon-purple: #BD93F9;
@@ -22,6 +22,25 @@
     --neon-pink: #FF79C6;
     --neon-yellow: #F1FA8C;
     --neon-orange: #FFB86C;
+  }
+
+  /* 라이트 모드 */
+  .light {
+    --background-primary: #FFFFFF;
+    --background-secondary: #F8FAFC;
+    --background-tertiary: #F1F5F9;
+
+    --foreground-primary: #0F172A;
+    --foreground-secondary: #475569;
+    --foreground-muted: #94A3B8;
+
+    /* 라이트 모드에서도 네온 컬러 유지하되 약간 조정 */
+    --neon-cyan: #0891B2;
+    --neon-purple: #7C3AED;
+    --neon-green: #059669;
+    --neon-pink: #DB2777;
+    --neon-yellow: #CA8A04;
+    --neon-orange: #EA580C;
   }
 
   * {
@@ -34,8 +53,14 @@
 
   body {
     @apply bg-background-primary text-foreground-primary font-sans antialiased;
-    background: linear-gradient(180deg, #0D1117 0%, #161B22 100%);
+    background: linear-gradient(180deg, var(--background-primary) 0%, var(--background-secondary) 100%);
     min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .light body,
+  html.light body {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
   }
 
   /* 커스텀 스크롤바 */
