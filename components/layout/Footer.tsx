@@ -1,12 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { 
-  Github, 
+import Image from 'next/image';
+import {
+  Github,
   Heart,
   ArrowUp
 } from 'lucide-react';
-import AILabLogo from '@/components/icons/AILabLogo';
 import KakaoIcon from '@/components/icons/KakaoIcon';
 import InstagramIcon from '@/components/icons/InstagramIcon';
 
@@ -37,7 +37,7 @@ export default function Footer() {
           >
             <div className="flex items-center gap-3 mb-6 justify-center">
               <div className="p-2 bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 rounded-lg">
-                <AILabLogo size={32} animated={false} />
+                <Image src="/logo.png" alt="AI 코드 연구소" width={32} height={32} />
               </div>
               <h3 className="text-2xl font-bold gradient-text">
                 AI 코드 연구소

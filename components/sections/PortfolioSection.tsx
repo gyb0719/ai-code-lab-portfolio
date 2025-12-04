@@ -3,16 +3,15 @@
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { 
-  Globe, 
-  Smartphone, 
-  Monitor, 
-  Github, 
+import {
+  Globe,
+  Smartphone,
+  Monitor,
+  Github,
   ExternalLink,
-  Calendar,
+  Wallet,
   Sparkles
 } from 'lucide-react';
-import AILabLogo from '@/components/icons/AILabLogo';
 import { projects } from '@/data/projects';
 import { Project } from '@/lib/types';
 
@@ -40,7 +39,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="relative h-48 mb-4 rounded-lg overflow-hidden bg-background-primary">
           <div className="absolute inset-0 bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <AILabLogo size={64} animated={false} className="opacity-30" />
+            <div className="text-4xl font-bold text-neon-cyan/30 font-mono">
+              {project.title.slice(0, 2)}
+            </div>
           </div>
           
           {/* 호버시 오버레이 */}
@@ -113,12 +114,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           {/* 메타 정보 */}
           <div className="flex items-center justify-between text-xs text-foreground-secondary">
             <div className="flex items-center gap-1">
-              <Calendar className="w-3 h-3" />
-              <span>{project.completedAt}</span>
+              <Wallet className="w-3 h-3 text-neon-green" />
+              <span className="text-neon-green font-medium">{project.completedAt}</span>
             </div>
             <div className="flex items-center gap-1">
               <Sparkles className="w-3 h-3 text-neon-yellow" />
-              <span>Featured</span>
+              <span>인기</span>
             </div>
           </div>
         </div>

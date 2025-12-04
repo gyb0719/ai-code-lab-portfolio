@@ -1,309 +1,279 @@
 import { Project } from '@/lib/types';
 
 export const projects: Project[] = [
-  // Web Projects - 비즈니스 성과 중심
+  // Web Projects - 프리랜서 인기 의뢰
   {
     id: 'web-1',
-    title: '글로벌 이커머스 플랫폼',
-    description: '월 매출 15억원 달성, 20만 활성 사용자 보유한 AI 기반 쇼핑몰',
+    title: '쇼핑몰/이커머스',
+    description: '결제 연동, 상품관리, 회원관리 기능을 갖춘 온라인 쇼핑몰',
     category: 'web',
-    technologies: ['Next.js 14', 'TypeScript', 'Stripe', 'PostgreSQL', 'Redis', 'AWS'],
+    technologies: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL', 'Tailwind CSS'],
     image: '/images/projects/ecommerce.jpg',
-    liveUrl: 'https://demo-ecommerce.com',
-    githubUrl: 'https://github.com/demo/ecommerce',
     features: [
-      '매출 전년 대비 300% 성장',
-      'AI 추천으로 구매 전환율 45% 향상',
-      '0.3초 로딩 속도 달성',
-      '99.9% 가동률 유지'
+      'PG사 결제 연동 (토스, 카카오페이)',
+      '상품/재고 관리 시스템',
+      '회원 등급별 혜택 관리',
+      '주문/배송 추적 기능'
     ],
-    completedAt: '2024.08'
+    completedAt: '300~1,000만원'
   },
   {
     id: 'web-2',
-    title: 'B2B SaaS 관리 플랫폼',
-    description: '500개 기업이 사용중인 업무 자동화 솔루션 (ARR 5억원)',
+    title: '기업 소개 홈페이지',
+    description: '반응형 디자인, SEO 최적화된 기업/브랜드 웹사이트',
     category: 'web',
-    technologies: ['React', 'Node.js', 'GraphQL', 'Kubernetes', 'MongoDB', 'Stripe'],
-    image: '/images/projects/saas.jpg',
-    liveUrl: 'https://demo-saas.com',
-    githubUrl: 'https://github.com/demo/saas',
+    technologies: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion', 'SEO'],
+    image: '/images/projects/corporate.jpg',
     features: [
-      '업무 효율 70% 개선',
-      '월 구독료 30만원 ~ 200만원',
-      '멀티테넌시 아키텍처',
-      'SOC2 보안 인증 획득'
+      '반응형 웹 디자인',
+      'SEO 최적화 (메타태그, 사이트맵)',
+      '문의 폼 및 이메일 연동',
+      '관리자 콘텐츠 수정 기능'
     ],
-    completedAt: '2024.07'
+    completedAt: '200~500만원'
   },
   {
     id: 'web-3',
-    title: '의료 예약 통합 시스템',
-    description: '전국 200개 병원 체인 도입, 일 3만건 예약 처리',
+    title: '관리자 대시보드',
+    description: '데이터 시각화, CRM, 어드민 패널 구축',
     category: 'web',
-    technologies: ['Vue 3', 'Django', 'PostgreSQL', 'Redis', 'Docker', 'Celery'],
-    image: '/images/projects/medical.jpg',
-    liveUrl: 'https://demo-medical.com',
-    githubUrl: 'https://github.com/demo/medical',
+    technologies: ['React', 'TypeScript', 'Chart.js', 'Node.js', 'PostgreSQL'],
+    image: '/images/projects/dashboard.jpg',
     features: [
-      '예약 노쇼율 80% 감소',
-      'AI 진료 시간 예측 정확도 92%',
-      '실시간 대기 시간 안내',
-      'HIPAA 규정 준수'
+      '실시간 데이터 시각화',
+      '고객 관리 (CRM) 시스템',
+      '권한별 접근 제어',
+      '리포트 생성 및 내보내기'
     ],
-    completedAt: '2024.06'
+    completedAt: '300~800만원'
   },
   {
     id: 'web-4',
-    title: '부동산 중개 플랫폼',
-    description: '월 거래액 100억원, 3D 가상 투어 제공하는 프롭테크 서비스',
+    title: 'AI 챗봇/상담 서비스',
+    description: 'ChatGPT API 연동, 자동 응답 고객 상담 시스템',
     category: 'web',
-    technologies: ['Next.js', 'Three.js', 'WebRTC', 'PostgreSQL', 'ElasticSearch', 'AWS S3'],
-    image: '/images/projects/realestate.jpg',
-    liveUrl: 'https://demo-realestate.com',
-    githubUrl: 'https://github.com/demo/realestate',
+    technologies: ['Next.js', 'OpenAI API', 'LangChain', 'Pinecone', 'WebSocket'],
+    image: '/images/projects/chatbot.jpg',
     features: [
-      '평균 거래 성사 기간 50% 단축',
-      '3D 매물 투어 10만회 조회',
-      'AI 시세 예측 정확도 85%',
-      '블록체인 계약서 관리'
+      'GPT 기반 자연어 상담',
+      'FAQ 자동 응답 시스템',
+      '상담 이력 관리',
+      '실시간 채팅 인터페이스'
     ],
-    completedAt: '2024.05'
+    completedAt: '200~600만원'
   },
   {
     id: 'web-5',
-    title: '온라인 교육 플랫폼',
-    description: '누적 수강생 10만명, 완주율 85% 달성한 에듀테크 서비스',
+    title: '예약/매칭 플랫폼',
+    description: '실시간 예약, 결제, 알림 기능이 포함된 O2O 서비스',
     category: 'web',
-    technologies: ['React', 'Node.js', 'WebRTC', 'PostgreSQL', 'Redis', 'FFmpeg'],
-    image: '/images/projects/education.jpg',
-    liveUrl: 'https://demo-edu.com',
-    githubUrl: 'https://github.com/demo/education',
+    technologies: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'Socket.io'],
+    image: '/images/projects/booking.jpg',
     features: [
-      '평균 학습 성취도 40% 향상',
-      'AI 맞춤형 커리큘럼 제공',
-      '실시간 화상 수업 지원',
-      '기업 교육 B2B 계약 50건'
+      '실시간 예약 캘린더',
+      '결제 및 환불 시스템',
+      '카카오/문자 알림 연동',
+      '리뷰 및 평점 시스템'
     ],
-    completedAt: '2024.04'
+    completedAt: '500~1,500만원'
   },
   {
     id: 'web-6',
-    title: '크립토 거래소',
-    description: '일 거래량 50억원, 10만 활성 트레이더 보유 거래 플랫폼',
+    title: '랜딩페이지',
+    description: '마케팅용 전환율 최적화 원페이지 웹사이트',
     category: 'web',
-    technologies: ['Next.js', 'WebSocket', 'Redis', 'PostgreSQL', 'Nginx', 'Docker'],
-    image: '/images/projects/crypto.jpg',
-    liveUrl: 'https://demo-crypto.com',
-    githubUrl: 'https://github.com/demo/crypto',
+    technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Google Analytics'],
+    image: '/images/projects/landing.jpg',
     features: [
-      '초당 10만 트랜잭션 처리',
-      '0.001초 주문 체결 속도',
-      '콜드 월렛 보안 시스템',
-      '24/7 자동 거래 봇 지원'
+      '반응형 원페이지 디자인',
+      '전환율 최적화 CTA',
+      '애니메이션 효과',
+      '분석 도구 연동'
     ],
-    completedAt: '2024.03'
+    completedAt: '100~300만원'
   },
 
-  // Mobile Projects - 실제 성과 중심
+  // Mobile Projects - 프리랜서 인기 의뢰
   {
     id: 'mobile-1',
-    title: '배달 주문 슈퍼앱',
-    description: '누적 다운로드 100만, MAU 30만의 O2O 배달 서비스',
+    title: 'O2O 매칭 앱',
+    description: '배달, 예약, 서비스 매칭 기능을 갖춘 플랫폼 앱',
     category: 'mobile',
-    technologies: ['React Native', 'TypeScript', 'Firebase', 'Google Maps API', 'Stripe'],
-    image: '/images/projects/delivery.jpg',
-    liveUrl: 'https://apps.apple.com/delivery',
-    githubUrl: 'https://github.com/demo/delivery',
+    technologies: ['Flutter', 'Firebase', 'Google Maps API', 'Node.js', 'PostgreSQL'],
+    image: '/images/projects/o2o.jpg',
     features: [
-      '일 주문 5만건 처리',
-      '평균 배달 시간 28분 달성',
-      'AI 수요 예측으로 대기 시간 30% 단축',
-      '가맹점 매출 평균 40% 증가'
+      '실시간 위치 기반 매칭',
+      '결제 시스템 연동',
+      '푸시 알림',
+      '채팅 기능'
     ],
-    completedAt: '2024.08'
+    completedAt: '500~2,000만원'
   },
   {
     id: 'mobile-2',
-    title: 'AI 헬스케어 앱',
-    description: '의료 기관 연계, 50만 사용자의 건강을 관리하는 디지털 헬스케어',
+    title: '소셜/커뮤니티 앱',
+    description: '채팅, 피드, 푸시알림 기능의 소셜 네트워크 앱',
     category: 'mobile',
-    technologies: ['Flutter', 'TensorFlow Lite', 'Firebase', 'HealthKit', 'Core ML'],
-    image: '/images/projects/healthcare.jpg',
-    liveUrl: 'https://play.google.com/healthcare',
-    githubUrl: 'https://github.com/demo/healthcare',
+    technologies: ['Flutter', 'Firebase', 'Socket.io', 'FCM', 'Cloud Storage'],
+    image: '/images/projects/social.jpg',
     features: [
-      '질병 조기 발견율 35% 향상',
-      'AI 건강 분석 정확도 94%',
-      '병원 연계 원격 진료',
-      '보험사 파트너십 체결'
+      '뉴스피드 및 게시물',
+      '실시간 채팅/DM',
+      '팔로우/팔로잉 시스템',
+      '푸시 알림'
     ],
-    completedAt: '2024.07'
+    completedAt: '500~1,500만원'
   },
   {
     id: 'mobile-3',
-    title: '자산관리 핀테크 앱',
-    description: '총 운용자산 500억원, 투자 수익률 평균 12% 달성',
+    title: '쇼핑몰 앱',
+    description: '결제, 장바구니, 주문관리 기능의 모바일 커머스',
     category: 'mobile',
-    technologies: ['Swift', 'SwiftUI', 'Core Data', 'Plaid API', 'Charts'],
-    image: '/images/projects/fintech.jpg',
-    liveUrl: 'https://apps.apple.com/fintech',
-    githubUrl: 'https://github.com/demo/fintech',
+    technologies: ['React Native', 'TypeScript', 'Redux', 'Stripe', 'Firebase'],
+    image: '/images/projects/shopping-app.jpg',
     features: [
-      'AI 포트폴리오 자동 리밸런싱',
-      '실시간 시장 분석 제공',
-      '세금 최적화 전략 수립',
-      '금융위 정식 인가 획득'
+      '상품 카탈로그',
+      '장바구니 및 결제',
+      '주문 추적',
+      '위시리스트 기능'
     ],
-    completedAt: '2024.06'
+    completedAt: '500~1,500만원'
   },
   {
     id: 'mobile-4',
-    title: '라이브 커머스 앱',
-    description: '누적 거래액 200억원, 라이브 방송 중 구매 전환율 25%',
+    title: '헬스케어/피트니스 앱',
+    description: '운동 기록, 건강 데이터 연동 피트니스 앱',
     category: 'mobile',
-    technologies: ['React Native', 'WebRTC', 'Socket.io', 'Redis', 'AWS MediaLive'],
-    image: '/images/projects/live-commerce.jpg',
-    liveUrl: 'https://play.google.com/livecommerce',
-    githubUrl: 'https://github.com/demo/livecommerce',
+    technologies: ['Flutter', 'HealthKit', 'Google Fit', 'Firebase', 'Charts'],
+    image: '/images/projects/fitness.jpg',
     features: [
-      '동시 시청자 10만명 처리',
-      '실시간 상품 구매 기능',
-      'AI 상품 추천 CTR 40%',
-      '인플루언서 1000명 입점'
+      '운동 기록 및 통계',
+      '건강 데이터 연동',
+      '목표 설정 및 알림',
+      '운동 루틴 관리'
     ],
-    completedAt: '2024.05'
+    completedAt: '300~1,000만원'
   },
   {
     id: 'mobile-5',
-    title: 'IoT 스마트홈 제어',
-    description: '20개 가전 브랜드 연동, 5만 가구 사용중인 홈 오토메이션',
+    title: '교육/LMS 앱',
+    description: '강의 시청, 진도관리, 퀴즈 기능의 이러닝 앱',
     category: 'mobile',
-    technologies: ['Flutter', 'MQTT', 'Node.js', 'MongoDB', 'TensorFlow'],
-    image: '/images/projects/smarthome.jpg',
-    liveUrl: 'https://apps.smarthome.com',
-    githubUrl: 'https://github.com/demo/smarthome',
+    technologies: ['Flutter', 'Firebase', 'Video Player', 'SQLite', 'FCM'],
+    image: '/images/projects/lms.jpg',
     features: [
-      '에너지 비용 평균 30% 절감',
-      'AI 생활 패턴 학습',
-      '음성 명령 인식률 98%',
-      'Matter 표준 인증'
+      '동영상 강의 스트리밍',
+      '학습 진도 관리',
+      '퀴즈 및 평가',
+      '오프라인 다운로드'
     ],
-    completedAt: '2024.04'
+    completedAt: '500~1,500만원'
   },
   {
     id: 'mobile-6',
-    title: '게이미피케이션 교육앱',
-    description: '누적 다운로드 200만, 유료 전환율 15%의 에듀테인먼트',
+    title: '유틸리티 앱',
+    description: '메모, 일정관리, 가계부 등 실용 앱',
     category: 'mobile',
-    technologies: ['Unity', 'C#', 'Firebase', 'AdMob', 'In-App Purchase'],
-    image: '/images/projects/edugame.jpg',
-    liveUrl: 'https://play.google.com/edugame',
-    githubUrl: 'https://github.com/demo/edugame',
+    technologies: ['Flutter', 'SQLite', 'Provider', 'Local Notifications'],
+    image: '/images/projects/utility.jpg',
     features: [
-      '일 평균 사용 시간 45분',
-      '학습 완료율 80% 달성',
-      'AI 난이도 자동 조절',
-      '구글 에디터스 초이스 선정'
+      '메모/노트 기능',
+      '일정 관리 캘린더',
+      '지출 내역 관리',
+      '위젯 지원'
     ],
-    completedAt: '2024.03'
+    completedAt: '200~500만원'
   },
 
-  // Desktop Projects - 기업용 솔루션
+  // Desktop Projects - 프리랜서 인기 의뢰
   {
     id: 'desktop-1',
-    title: 'ERP 통합 관리 시스템',
-    description: '중소기업 200곳 도입, 업무 효율 60% 개선 달성',
+    title: '업무 자동화 프로그램',
+    description: '엑셀 매크로, 데이터 처리, RPA 자동화 솔루션',
     category: 'desktop',
-    technologies: ['Electron', 'React', 'Node.js', 'PostgreSQL', 'Redis', 'Docker'],
-    image: '/images/projects/erp.jpg',
-    githubUrl: 'https://github.com/demo/erp',
+    technologies: ['Electron', 'Python', 'Node.js', 'Excel API', 'Puppeteer'],
+    image: '/images/projects/automation.jpg',
     features: [
-      '재고 관리 정확도 99.5%',
-      '회계 처리 시간 70% 단축',
-      '실시간 경영 대시보드',
-      '모바일 앱 연동 지원'
+      '반복 업무 자동화',
+      '엑셀 데이터 처리',
+      '정기 작업 스케줄링',
+      '보고서 자동 생성'
     ],
-    completedAt: '2024.08'
+    completedAt: '100~500만원'
   },
   {
     id: 'desktop-2',
-    title: 'POS 매장 관리 시스템',
-    description: '프랜차이즈 500개 매장 사용, 매출 데이터 실시간 분석',
+    title: '데이터 크롤링/수집 툴',
+    description: '웹 스크래핑, 자동 데이터 수집 프로그램',
     category: 'desktop',
-    technologies: ['JavaFX', 'Spring Boot', 'MySQL', 'Redis', 'RabbitMQ'],
-    image: '/images/projects/pos.jpg',
-    githubUrl: 'https://github.com/demo/pos',
+    technologies: ['Python', 'Selenium', 'BeautifulSoup', 'Electron', 'SQLite'],
+    image: '/images/projects/crawler.jpg',
     features: [
-      '초당 1000건 결제 처리',
-      'AI 매출 예측 정확도 87%',
-      '오프라인 모드 지원',
-      '다중 결제 수단 통합'
+      '웹사이트 데이터 수집',
+      '자동 스크래핑 스케줄',
+      '데이터 정제 및 저장',
+      'Excel/CSV 내보내기'
     ],
-    completedAt: '2024.07'
+    completedAt: '50~300만원'
   },
   {
     id: 'desktop-3',
-    title: '의료 영상 AI 분석',
-    description: '종합병원 50곳 도입, 진단 정확도 96% 달성',
+    title: '재고/POS 관리 시스템',
+    description: '매장용 재고관리, 판매 관리 프로그램',
     category: 'desktop',
-    technologies: ['Python', 'PyQt5', 'TensorFlow', 'DICOM', 'PostgreSQL'],
-    image: '/images/projects/medical-ai.jpg',
-    githubUrl: 'https://github.com/demo/medical-ai',
+    technologies: ['Electron', 'React', 'Node.js', 'SQLite', 'Printer API'],
+    image: '/images/projects/pos.jpg',
     features: [
-      '진단 시간 80% 단축',
-      'FDA 승인 획득',
-      '10TB 영상 데이터 처리',
-      '실시간 협진 시스템'
+      '상품 재고 관리',
+      '판매/매출 기록',
+      '영수증 출력',
+      '바코드 스캔 연동'
     ],
-    completedAt: '2024.06'
+    completedAt: '300~1,000만원'
   },
   {
     id: 'desktop-4',
-    title: '3D CAD 설계 소프트웨어',
-    description: '제조업체 100곳 사용, 설계 시간 50% 단축',
+    title: '파일 변환/처리 툴',
+    description: 'PDF, 이미지, 문서 변환 유틸리티',
     category: 'desktop',
-    technologies: ['C++', 'Qt', 'OpenGL', 'Python', 'SQLite'],
-    image: '/images/projects/cad.jpg',
-    githubUrl: 'https://github.com/demo/cad',
+    technologies: ['Electron', 'Sharp', 'PDF-lib', 'Node.js', 'FFmpeg'],
+    image: '/images/projects/converter.jpg',
     features: [
-      '100만 폴리곤 실시간 렌더링',
-      'AI 설계 최적화',
-      '클라우드 협업 지원',
-      'VR/AR 뷰어 연동'
+      '파일 포맷 변환',
+      '이미지 리사이즈/압축',
+      'PDF 병합/분할',
+      '일괄 처리 기능'
     ],
-    completedAt: '2024.05'
+    completedAt: '100~400만원'
   },
   {
     id: 'desktop-5',
-    title: '암호화폐 자동 트레이딩',
-    description: '월 평균 수익률 8%, 24시간 자동 거래 시스템',
+    title: '모니터링/대시보드 앱',
+    description: '실시간 데이터 모니터링 데스크탑 앱',
     category: 'desktop',
-    technologies: ['Python', 'Tkinter', 'ccxt', 'TensorFlow', 'PostgreSQL'],
-    image: '/images/projects/trading-bot.jpg',
-    githubUrl: 'https://github.com/demo/trading-bot',
+    technologies: ['Electron', 'React', 'Chart.js', 'WebSocket', 'Node.js'],
+    image: '/images/projects/monitoring.jpg',
     features: [
-      '10개 거래소 동시 거래',
-      'AI 시장 예측 모델',
-      '리스크 관리 시스템',
-      '백테스팅 시뮬레이터'
+      '실시간 데이터 모니터링',
+      '알림 및 경고 시스템',
+      '데이터 시각화',
+      '리포트 생성'
     ],
-    completedAt: '2024.04'
+    completedAt: '200~600만원'
   },
   {
     id: 'desktop-6',
-    title: '빅데이터 분석 플랫폼',
-    description: '일 100TB 데이터 처리, 실시간 인사이트 제공',
+    title: '키오스크/디지털 사이니지',
+    description: '매장용 터치스크린 키오스크 앱',
     category: 'desktop',
-    technologies: ['Java', 'Apache Spark', 'Kafka', 'Elasticsearch', 'Grafana'],
-    image: '/images/projects/bigdata.jpg',
-    githubUrl: 'https://github.com/demo/bigdata',
+    technologies: ['Electron', 'React', 'Node.js', 'Printer API', 'Touch Events'],
+    image: '/images/projects/kiosk.jpg',
     features: [
-      '데이터 처리 속도 10배 향상',
-      'ML 파이프라인 자동화',
-      '실시간 이상 탐지',
-      '50개 데이터 소스 연동'
+      '터치스크린 UI',
+      '주문/결제 시스템',
+      '영수증/티켓 출력',
+      '원격 콘텐츠 관리'
     ],
-    completedAt: '2024.03'
+    completedAt: '300~800만원'
   }
 ];

@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Terminal, Home } from 'lucide-react';
 import { cn } from '@/lib/utils/cn';
-import AILabLogo from '@/components/icons/AILabLogo';
 
 const navItems = [
   { label: 'Home', href: '#home', icon: Home },
@@ -71,15 +71,11 @@ export default function Header() {
               transition={{ duration: 0.3 }}
               className="relative"
             >
-              <AILabLogo size={40} animated={true} />
-              <div className="absolute inset-0 w-10 h-10 bg-neon-cyan/20 blur-xl group-hover:bg-neon-cyan/40 transition-all" />
+              <Image src="/logo.png" alt="AI 코드 연구소" width={40} height={40} />
             </motion.div>
             <div className="flex flex-col">
               <span className="text-lg font-mono font-bold gradient-text">
                 AI 코드 연구소
-              </span>
-              <span className="text-xs text-foreground-secondary font-mono">
-                &lt;Code Laboratory /&gt;
               </span>
             </div>
           </Link>

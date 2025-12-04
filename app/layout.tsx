@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import CustomCursor from "@/components/effects/CustomCursor";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -78,7 +77,6 @@ export default function RootLayout({
   return (
     <html lang="ko" className="scroll-smooth">
       <body className={`${inter.variable} font-sans antialiased bg-background-primary text-foreground-primary`}>
-        <CustomCursor />
         <Header />
         <main className="min-h-screen pt-20">
           {children}
